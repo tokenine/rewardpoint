@@ -87,13 +87,13 @@ contract TokenineRewardPoint is Context, ERC20, AccessControl, Ownable {
     }
 
     function setRound(uint256 _round) public {
-        require(hasRole(MINTER_ROLE, msg.sender), "Caller is not a minter");
+        require(hasRole(BURNER_ROLE, msg.sender), "Caller is not a burner");
         require(_round != round);
         round = _round;
     }
     
     function reset() public {
-        require(hasRole(MINTER_ROLE, msg.sender), "Caller is not a minter");
+        require(hasRole(BURNER_ROLE, msg.sender), "Caller is not a burner");
         round = round + 1;
     }
 }
