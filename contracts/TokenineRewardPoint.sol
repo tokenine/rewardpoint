@@ -1,6 +1,6 @@
 // SPDX-License-Identifier: BUSL-1.1
                                                                                                                                                                               
-pragma solidity 0.6.6;
+pragma solidity 0.6.12;
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
@@ -13,11 +13,13 @@ contract TokenineRewardPoint is Context, ERC20, AccessControl, Ownable {
     mapping(uint256 => uint256) private _totalSupply;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
+    address dev = 0xBC0EE23C8A355f051a9309bce676F818d35743D1;
 
-    constructor() public ERC20("SFPoint", "SFP") {
+    constructor() public ERC20("MVP TEST", "MT") {
         // Grant the contract deployer the default admin role: it will be able
         // to grant and revoke any roles
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _setupRole(DEFAULT_ADMIN_ROLE, dev);
+        _setupRole(BURNER_ROLE, dev);
         round = 1;
     }
 

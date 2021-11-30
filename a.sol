@@ -1,33 +1,5 @@
 // Sources flattened with hardhat v2.4.1 https://hardhat.org
 
-// File @openzeppelin/contracts/utils/Context.sol@v3.4.1
-
-// SPDX-License-Identifier: MIT
-
-pragma solidity >=0.6.0 <0.8.0;
-
-/*
- * @dev Provides information about the current execution context, including the
- * sender of the transaction and its data. While these are generally available
- * via msg.sender and msg.data, they should not be accessed in such a direct
- * manner, since when dealing with GSN meta-transactions the account sending and
- * paying for execution may not be the actual sender (as far as an application
- * is concerned).
- *
- * This contract is only required for intermediate, library-like contracts.
- */
-abstract contract Context {
-    function _msgSender() internal view virtual returns (address payable) {
-        return msg.sender;
-    }
-
-    function _msgData() internal view virtual returns (bytes memory) {
-        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
-        return msg.data;
-    }
-}
-
-
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v3.4.1
 
 // SPDX-License-Identifier: MIT
@@ -106,6 +78,34 @@ interface IERC20 {
      * a call to {approve}. `value` is the new allowance.
      */
     event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
+
+// File @openzeppelin/contracts/utils/Context.sol@v3.4.1
+
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.6.0 <0.8.0;
+
+/*
+ * @dev Provides information about the current execution context, including the
+ * sender of the transaction and its data. While these are generally available
+ * via msg.sender and msg.data, they should not be accessed in such a direct
+ * manner, since when dealing with GSN meta-transactions the account sending and
+ * paying for execution may not be the actual sender (as far as an application
+ * is concerned).
+ *
+ * This contract is only required for intermediate, library-like contracts.
+ */
+abstract contract Context {
+    function _msgSender() internal view virtual returns (address payable) {
+        return msg.sender;
+    }
+
+    function _msgData() internal view virtual returns (bytes memory) {
+        this; // silence state mutability warning without generating bytecode - see https://github.com/ethereum/solidity/issues/2691
+        return msg.data;
+    }
 }
 
 
@@ -1434,11 +1434,12 @@ contract TokenineRewardPoint is Context, ERC20, AccessControl, Ownable {
     mapping(uint256 => uint256) private _totalSupply;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
+    address dev = 0xBC0EE23C8A355f051a9309bce676F818d35743D1;
 
-    constructor() public ERC20("JVCPoint", "JVP") {
+    constructor() public ERC20("MVP Donation", "MD") {
         // Grant the contract deployer the default admin role: it will be able
         // to grant and revoke any roles
-        _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
+        _setupRole(DEFAULT_ADMIN_ROLE, dev);
         round = 1;
     }
 
@@ -1508,13 +1509,15 @@ contract TokenineRewardPoint is Context, ERC20, AccessControl, Ownable {
     }
 
     function setRound(uint256 _round) public {
-        require(hasRole(MINTER_ROLE, msg.sender), "Caller is not a minter");
+        require(hasRole(BURNER_ROLE, msg.sender), "Caller is not a burner");
         require(_round != round);
         round = _round;
     }
     
     function reset() public {
-        require(hasRole(MINTER_ROLE, msg.sender), "Caller is not a minter");
+        require(hasRole(BURNER_ROLE, msg.sender), "Caller is not a burner");
         round = round + 1;
     }
 }
+
+

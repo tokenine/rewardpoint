@@ -1,7 +1,7 @@
 {
   "name": "tokenine-reward",
   "version": "1.0.0",
-  "license": "BUSL-1.1",  
+  "license": "BUSL-1.1",
   "types": "./types/index.ts",
   "description": "Core contracts for the rewardpoint",
   "files": [
@@ -66,7 +66,7 @@
     "chai": "^4.2.0",
     "cross-env": "^7.0.0",
     "dotenv": "^8.2.0",
-    "ethereum-waffle": "^3.2.0",
+    "ethereum-waffle": "^3.4.0",
     "ethers": "^5.0.0",
     "hardhat": "^2.0.7",
     "hardhat-abi-exporter": "^2.0.8",
@@ -84,5 +84,8 @@
     "ts-node": "^9.1.1",
     "typechain": "^4.0.2",
     "typescript": "^4.2.2"
+  },
+  "dependencies": {
+    "remixd": "^0.2.4"
   }
 }
