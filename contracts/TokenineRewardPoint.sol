@@ -15,7 +15,7 @@ contract TokenineRewardPoint is Context, ERC20, AccessControl, Ownable {
     bytes32 public constant BURNER_ROLE = keccak256("BURNER_ROLE");
     address dev = 0xBC0EE23C8A355f051a9309bce676F818d35743D1;
 
-    constructor() public ERC20("MVP TEST", "MT") {
+    constructor() public ERC20("MVP Donation", "MD") {
         // Grant the contract deployer the default admin role: it will be able
         // to grant and revoke any roles
         _setupRole(DEFAULT_ADMIN_ROLE, dev);

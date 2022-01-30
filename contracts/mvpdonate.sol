@@ -14,7 +14,7 @@ contract MVPDonate is ERC20("Stake MDD", "ST-MDD") {
     TokenineRewardPoint public mvpp;
     
     // uint256 public endDate = 1635526860; //  Saturday, October 30, 2021 0:01:00 GMT+07:00
-    uint256 public endDate = 1638032460; //  Saturdayที่ 27 November 2021 0:01:00 GMT+07:00
+    uint256 public endDate = 1640883660; // Friday, December 31, 2021 0:01:00 GMT+07:00
     address public donateTo  = 0xcD64a1fb76085F6184C1A8592f44DcF713EAD517 ;         
     constructor(IERC20 _mvp, TokenineRewardPoint _mvpp) public {
         mvp = _mvp;
@@ -54,7 +54,7 @@ contract MVPDonate is ERC20("Stake MDD", "ST-MDD") {
     }
 
     function leave(uint256 _share) public {
-        require(endDate <= currentTime(), "ERC20: Unlock on July 10, 2021 5:30:32 PM GMT+07:00");
+        require(endDate <= currentTime(), "ERC20: Unlock on Friday, December 31, 2021 0:01:00 GMT+07:00");
         uint256 totalMVP = mvp.balanceOf(address(this));
         uint256 totalShares = totalSupply();        
         uint256 what = _share.mul(totalMVP).div(totalShares);

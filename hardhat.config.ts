@@ -48,16 +48,18 @@ const config: HardhatUserConfig = {
   namedAccounts: {
     deployer: {
       default: 137,
-      97: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
-      56: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
-      96: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
-      137: "0x4A4cF4741a96D8e0123a490cA720d84fD9b15bc4",
+      17: "0x7CE094Bea0e0adF53641310DB1193028D7F7b19a",
+      97: "0x7CE094Bea0e0adF53641310DB1193028D7F7b19a",
+      56: "0x7CE094Bea0e0adF53641310DB1193028D7F7b19a",
+      96: "0x7CE094Bea0e0adF53641310DB1193028D7F7b19a",
+      137: "0x7CE094Bea0e0adF53641310DB1193028D7F7b19a",
     },
     dev: {
       // Default to 1
       default: 137,
       // dev address mainnet
       // 1: "",
+        17: "0xBC0EE23C8A355f051a9309bce676F818d35743D1",
         97: "0xBC0EE23C8A355f051a9309bce676F818d35743D1",
         56: "0xBC0EE23C8A355f051a9309bce676F818d35743D1",
         96: "0xBC0EE23C8A355f051a9309bce676F818d35743D1",
@@ -73,7 +75,7 @@ const config: HardhatUserConfig = {
       saveDeployments: true,
     },    
     bsc: {
-      url: "https://bsc-dataseed.binance.org",
+      url: "https://bsc-dataseed1.defibit.io",
       accounts: [`0x${pkey}`],
       chainId: 56,
       live: true,
@@ -88,7 +90,13 @@ const config: HardhatUserConfig = {
       tags: ["staging"],
       gasPrice: 20000000000,
     },
-
+    'metachain': {
+      url: 'https://rpc.metachain.asia',
+      chainId: 17,
+      accounts: [`0x${pkey}`],
+      live: true,
+      saveDeployments: true,
+    }
   },
   paths: {
     artifacts: "artifacts",
